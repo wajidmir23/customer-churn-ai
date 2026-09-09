@@ -1,0 +1,62 @@
+{
+  "best_model": "Gradient Boosting",
+  "selection_rule": "Highest test recall, then F2, ROC-AUC, and F1",
+  "decision_threshold": 0.5,
+  "data_file": "WA_Fn-UseC_-Telco-Customer-Churn.csv",
+  "trained_at_utc": "2026-09-08T15:12:18.699096+00:00",
+  "training_rows": 5634,
+  "test_rows": 1409,
+  "feature_columns": [
+    "gender",
+    "SeniorCitizen",
+    "Partner",
+    "Dependents",
+    "tenure",
+    "PhoneService",
+    "MultipleLines",
+    "InternetService",
+    "OnlineSecurity",
+    "OnlineBackup",
+    "DeviceProtection",
+    "TechSupport",
+    "StreamingTV",
+    "StreamingMovies",
+    "Contract",
+    "PaperlessBilling",
+    "PaymentMethod",
+    "MonthlyCharges",
+    "TotalCharges"
+  ],
+  "numerical_columns": [
+    "tenure",
+    "MonthlyCharges",
+    "TotalCharges"
+  ],
+  "categorical_columns": [
+    "gender",
+    "SeniorCitizen",
+    "Partner",
+    "Dependents",
+    "PhoneService",
+    "MultipleLines",
+    "InternetService",
+    "OnlineSecurity",
+    "OnlineBackup",
+    "DeviceProtection",
+    "TechSupport",
+    "StreamingTV",
+    "StreamingMovies",
+    "Contract",
+    "PaperlessBilling",
+    "PaymentMethod"
+  ],
+  "target_mapping": {
+    "No": 0,
+    "Yes": 1
+  },
+  "class_distribution": {
+    "no_churn": 5174,
+    "churn": 1869,
+    "churn_rate": 0.2653698707936959
+  }
+}
