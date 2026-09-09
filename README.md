@@ -111,7 +111,7 @@ customer-churn-ai/
 Use Python 3.10+ (Python 3.11 or 3.12 is a good choice for broad package compatibility).
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/wajidmir23/customer-churn-ai.git
 cd customer-churn-ai
 
 python -m venv .venv
