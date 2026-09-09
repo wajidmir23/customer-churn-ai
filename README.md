@@ -1,8 +1,8 @@
 # Customer Churn Prediction & Explainable AI
 
-A portfolio-ready Streamlit application that identifies customers likely to leave a telecommunications service and makes every prediction easier to act on with SHAP explanations.
+A portfolio ready Streamlit application that identifies customers likely to leave a telecommunications service and makes every prediction easier to act on with SHAP explanations.
 
-The project is deliberately built around the retention use case: a missed churner can be more costly than a retention offer sent to a customer who stays. The selected model is therefore chosen by held-out-test recall and F2 score before ROC-AUC and F1—not by accuracy alone.
+The project is deliberately built around the retention use case: a missed churner can be more costly than a retention offer sent to a customer who stays. The selected model is therefore chosen by held out test recall and F2 score before ROC-AUC and F1—not by accuracy alone.
 
 ## What it does
 
@@ -22,7 +22,7 @@ This project includes the public [IBM Telco Customer Churn dataset](https://www.
 - Numerical features: `tenure`, `MonthlyCharges`, `TotalCharges`
 - Categorical features: service, contract, billing, payment, and demographic fields (including the binary `SeniorCitizen` field)
 - Class distribution: 1,869 churners (26.5%) and 5,174 non-churners (73.5%)
-- Missing values: 11 blank `TotalCharges` values; all belong to zero-tenure customers and are median-imputed inside the fitted training pipeline
+- Missing values: 11 blank `TotalCharges` values; all belong to zero tenure customers and are median imputed inside the fitted training pipeline
 
 ## Architecture
 
@@ -55,7 +55,7 @@ For every model, the project records accuracy, precision, recall, F1, F2, ROC-AU
 
 ## Latest reproducible model comparison
 
-These are real results from `python -m src.train_model` on the included data's held-out test set using a fixed random seed. Small differences can occur after upgrading scientific Python dependencies.
+These are real results from `python -m src.train_model` on the included data's held out test set using a fixed random seed. Small differences can occur after upgrading scientific Python dependencies.
 
 | Model | Accuracy | Precision | Recall | F1 | F2 | ROC-AUC |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -64,11 +64,11 @@ These are real results from `python -m src.train_model` on the included data's h
 | Random Forest | 0.761 | 0.534 | 0.767 | 0.630 | 0.706 | 0.840 |
 | **Gradient Boosting (selected)** | **0.742** | **0.509** | **0.797** | **0.621** | **0.716** | **0.846** |
 
-The Gradient Boosting model was selected because it has the highest recall (79.7%) and F2 score (0.716), while also having the best ROC-AUC. Its lower accuracy than Random Forest is an acceptable trade-off for catching more customers who actually churn.
+The Gradient Boosting model was selected because it has the highest recall (79.7%) and F2 score (0.716), while also having the best ROC-AUC. Its lower accuracy than Random Forest is an acceptable trade off for catching more customers who actually churn.
 
 ## Explainable AI with SHAP
 
-The application calls a SHAP explainer on the selected estimator after applying the fitted preprocessing step. Since one-hot encoding expands categorical columns, the code then aggregates SHAP values back to original fields such as `Contract` and `PaymentMethod`.
+The application calls a SHAP explainer on the selected estimator after applying the fitted preprocessing step. Since one hot encoding expands categorical columns, the code then aggregates SHAP values back to original fields such as `Contract` and `PaymentMethod`.
 
 For an individual customer, the **Explain Prediction** page shows:
 
@@ -158,13 +158,13 @@ After launching the application locally, capture the Dashboard, EDA, Prediction,
 
 - **Why a Pipeline?** It binds learned preprocessing and the estimator together, preventing train/app transformation drift and leakage.
 - **Why not accuracy alone?** The 26.5% churn class is smaller. A model can earn high accuracy by overlooking churners, so recall and F2 are prioritised.
-- **Why SHAP after preprocessing?** Tree models consume numeric one-hot-encoded arrays. SHAP explains those actual inputs, then the project groups category contributions into human-readable source fields.
-- **What is the decision threshold?** The current dashboard uses 0.50. In production it should be tuned against campaign capacity, retention-offer cost, and the value of saving a customer.
-- **What would you improve?** Add threshold/cost optimisation, probability calibration, cross-validation, fairness monitoring, feature/data-drift checks, experiment tracking, and a secure batch-scoring workflow.
+- **Why SHAP after preprocessing?** Tree models consume numeric one hot encoded arrays. SHAP explains those actual inputs, then the project groups category contributions into human-readable source fields.
+- **What is the decision threshold?** The current dashboard uses 0.50. In production it should be tuned against campaign capacity, retention offer cost, and the value of saving a customer.
+- **What would you improve?** Add threshold/cost optimisation, probability calibration, cross validation, fairness monitoring, feature/data-drift checks, experiment tracking, and a secure batch-scoring workflow.
 
 ## Important technical decisions
 
 - `TotalCharges` blanks are converted to missing values, then imputed only after splitting—never dropped silently.
 - `OneHotEncoder(handle_unknown="ignore")` permits an unseen category at app inference without crashing.
 - The final model is saved with Joblib as one fitted object, so the app does not need to rebuild preprocessing.
-- Tests cover cleaning, leakage-safe transformer fitting, missing-input rejection, binary predictions, and probability bounds.
+- Tests cover cleaning, leakage safe transformer fitting, missing-input rejection, binary predictions, and probability bounds.
