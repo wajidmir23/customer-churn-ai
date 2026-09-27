@@ -3,7 +3,7 @@
   "selection_rule": "Highest test recall, then F2, ROC-AUC, and F1",
   "decision_threshold": 0.5,
   "data_file": "WA_Fn-UseC_-Telco-Customer-Churn.csv",
-  "trained_at_utc": "2026-09-24T13:40:59.590777+00:00",
+  "trained_at_utc": "2026-09-27T17:03:01.768672+00:00",
   "training_rows": 5634,
   "test_rows": 1409,
   "feature_columns": [
