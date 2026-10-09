@@ -11,6 +11,14 @@ The project is deliberately built around the retention use case: a missed churne
 - Predicts a manually entered customer's churn probability, churn/stay prediction, and low/medium/high risk level.
 - Explains each prediction with factors increasing and decreasing churn risk.
 - Displays global SHAP importance to show the most influential features across the dataset.
+## Tech Stack
+- Python  
+- Pandas and NumPy
+- Scikit-learn
+- Streamlit
+- Matplotlib / Plotly
+- Joblib
+- Pytest
 
 ## Dataset
 
@@ -151,8 +159,12 @@ pytest -q
 When changing model code, run `python -m src.train_model`, review the refreshed `models/` artifacts, and commit them with the code change.
 
 ## Screenshots
-
-After launching the application locally, capture the Dashboard, EDA, Prediction, and Explain Prediction pages and save portfolio screenshots under `assets/`. Suggested filenames are `dashboard.png`, `eda.png`, `prediction.png`, and `explanation.png`.
+<img width="1470" height="956" alt="Screenshot 2026-10-09 at 20 33 11" src="https://github.com/user-attachments/assets/c40559b0-0534-4a63-a359-f6dd362ed01f" />
+<img width="1470" height="956" alt="Screenshot 2026-10-09 at 20 33 41" src="https://github.com/user-attachments/assets/e63a00c1-e2f4-43b1-be51-ce37b99402cd" />
+<img width="1470" height="956" alt="Screenshot 2026-10-09 at 20 34 10" src="https://github.com/user-attachments/assets/7e220631-d340-4a6c-8d65-8de29c589bc5" />
+<img width="1470" height="956" alt="Screenshot 2026-10-09 at 20 34 30" src="https://github.com/user-attachments/assets/3e83ddcf-8f5a-40fc-a9b8-3d8141750b7f" />
+<img width="1470" height="956" alt="Screenshot 2026-10-09 at 20 34 38" src="https://github.com/user-attachments/assets/6bda0379-dd80-49e3-a702-ed6dee11182f" />
+<img width="1470" height="956" alt="Screenshot 2026-10-09 at 20 35 05" src="https://github.com/user-attachments/assets/c5d19aa4-4831-4531-ab0c-4ca21522090c" />
 
 ## Interview talking points
 
@@ -168,3 +180,12 @@ After launching the application locally, capture the Dashboard, EDA, Prediction,
 - `OneHotEncoder(handle_unknown="ignore")` permits an unseen category at app inference without crashing.
 - The final model is saved with Joblib as one fitted object, so the app does not need to rebuild preprocessing.
 - Tests cover cleaning, leakage safe transformer fitting, missing-input rejection, binary predictions, and probability bounds.
+  
+## License
+
+This project is licensed under the MIT License.
+
+## Author
+
+- Wajid Mir
+  
